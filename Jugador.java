@@ -1,13 +1,15 @@
 package com.mycompany.rummikub;
 import java.util.ArrayList;
 
-public class Jugador extends Mazo {
+public class Jugador {
     private String nombre;
     private ArrayList<Ficha> Baraja;
+    private Mazo mazo;
     
-    public Jugador(String nombre){
+    public Jugador(String nombre,Mazo mazo){
         setNombre(nombre);
         this.Baraja = new ArrayList<Ficha>();
+        this.mazo = mazo;
     }
     
     public String getNombre() {
@@ -31,8 +33,15 @@ public class Jugador extends Mazo {
         return total;
     }
     
-    public void agregarFicha(){
-        Ficha Añadida = comerFicha();
-        Baraja.add(Añadida);
+    public void iniciarBaraja(){
+        for (int i = 0; i < 14;i++){
+            Ficha añadida = mazo.removerFicha();
+            Baraja.add(añadida);
+        }
     }
+    
+    public void comerFicha(){
+        Ficha añadida = mazo.removerFicha(); 
+            Baraja.add(añadida);
+        }
 }
