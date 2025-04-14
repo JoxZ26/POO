@@ -17,8 +17,11 @@ public class Mazo {
         mazo.add(new Ficha(0,"comodin",true));
                 
     }
-    public void RepartirFichas(){
-        
-        
+    public Ficha comerFicha() {
+        if (mazo.isEmpty()) {
+        return null; 
+    } else {
+        return mazo.remove(mazo.size() - 1); 
     }
 }
+
