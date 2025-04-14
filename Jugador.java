@@ -1,7 +1,7 @@
 package com.mycompany.rummikub;
 import java.util.ArrayList;
 
-public class Jugador {
+public class Jugador extends Mazo {
     private String nombre;
     private ArrayList<Ficha> Baraja;
     
@@ -29,5 +29,10 @@ public class Jugador {
             total += temp.getNumero();
         }
         return total;
+    }
+    
+    public void agregarFicha(){
+        Ficha Añadida = comerFicha();
+        Baraja.add(Añadida);
     }
 }
