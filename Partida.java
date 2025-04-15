@@ -7,6 +7,7 @@ public class Partida {
     private Mazo mazo = new Mazo();
 
     public Partida(int cantidadJugadores) {
+        setMesa();
         setCantidadJugadores(cantidadJugadores);
         crearJugadores();
     }
