@@ -36,7 +36,11 @@ public class Jugador {
     public int puntajeTotal(){
         int total = 0;
         for (Ficha temp : Baraja){
+            if (temp.isComodin()){
+                total += 30;
+            }else{
             total += temp.getNumero();
+            }
         }
         return total;
     }
