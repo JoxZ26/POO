@@ -9,15 +9,12 @@ public class Jugador {
     public Jugador(String nombre,Mazo mazo){
         setNombre(nombre);
         this.Baraja = new ArrayList<Ficha>();
-        this.mazo = mazo;
+        setMazo(mazo);
     }
     
+    /* Getters */
     public String getNombre() {
         return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
     }
 
     public void getBaraja() {
@@ -25,6 +22,17 @@ public class Jugador {
             System.out.println(temp);
         }
     }
+    
+    /* Setters */
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setMazo(Mazo mazo) {
+        this.mazo = mazo;
+    }
+
+    /* Métodos */
     public int puntajeTotal(){
         int total = 0;
         for (Ficha temp : Baraja){
@@ -43,5 +51,5 @@ public class Jugador {
     public void comerFicha(){
         Ficha añadida = mazo.removerFicha(); 
             Baraja.add(añadida);
-        }
+    }
 }
