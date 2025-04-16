@@ -17,7 +17,7 @@ public class vistaBaraja extends javax.swing.JFrame {
     private Baraja mazo;
     public vistaBaraja() {
         mazo = new Baraja();
-        mazo.generarCartas();
+        mazo.agregarFichas();
         initComponents();
         agregarCartas();
     }
@@ -38,7 +38,7 @@ public class vistaBaraja extends javax.swing.JFrame {
 
     
     
-    public void agregarCartas(){
+    public void agregarFichas(){
         for (int i = 0; i < mazo.getBaraja().size(); i++) {
             jPanel1.add(new VistaFicha(mazo.getBaraja().get(i)));
         }
