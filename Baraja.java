@@ -8,7 +8,6 @@ public class Baraja {
 
     public Baraja() {
         baraja = new ArrayList<>();
-    
     }
 
     public ArrayList<Ficha> getBaraja() {
@@ -19,8 +18,7 @@ public class Baraja {
         this.baraja = baraja;
     }
     
-    
-    public void generarCartas(){
+    public void generarFichas(){
         int contador=1;
         for (int i = 0; i < 4; i++) {
             for (int j = 1; j < 14; j++) {
@@ -37,6 +35,9 @@ public class Baraja {
         Collections.shuffle(baraja);
     }
     
+    public Ficha removerFicha() {
+        return baraja.remove(baraja.size() - 1);
+    }  
 }
 
 
