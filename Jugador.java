@@ -1,12 +1,13 @@
 package com.mycompany.rummikub;
+
 import java.util.ArrayList;
 
 public class Jugador {
     private String nombre;
     private ArrayList<Ficha> Baraja;
-    private Mazo mazo;
+    private Baraja mazo;
     
-    public Jugador(String nombre,Mazo mazo){
+    public Jugador(String nombre, Baraja mazo){
         setNombre(nombre);
         this.Baraja = new ArrayList<Ficha>();
         setMazo(mazo);
@@ -28,7 +29,7 @@ public class Jugador {
         this.nombre = nombre;
     }
 
-    public void setMazo(Mazo mazo) {
+    public void setMazo(Baraja mazo) {
         this.mazo = mazo;
     }
 
@@ -53,7 +54,7 @@ public class Jugador {
     }
     
     public void comerFicha(){
-        Ficha añadida = mazo.removerFicha(); 
+        Ficha añadida = mazo.removerFicha();
             Baraja.add(añadida);
     }
 }
