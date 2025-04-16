@@ -10,35 +10,38 @@ public class Ficha {
         this.numero = numero;
     }
 
-    
+    /* Getters */
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public int getColor() {
         return color;
     }
-
-    public void setColor(int color) {
-        this.color = color;
-    }
-
+    
     public int getNumero() {
         return numero;
+    }
+    
+    public boolean isComodin() {
+        return numero == 4;
+    }
+    
+    /* Setters */
+    public void setId(int id) {
+        this.id = id;
+    }
+    
+    public void setColor(int color) {
+        this.color = color;
     }
 
     public void setNumero(int numero) {
         this.numero = numero;
     }
     
-    
+    /* toString */
     public String toString() {
         return "#" + id + "|C" + color + "N" + numero ;
-    }
-
-    
+    } 
 }
