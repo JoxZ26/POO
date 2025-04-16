@@ -1,10 +1,11 @@
+
 import java.util.ArrayList;
 
 public class Partida {
     private int cantidadJugadores;
     private Jugador[] jugadores;
     private ArrayList<ArrayList<Ficha>> mesa;
-    private Mazo mazo = new Mazo();
+    private Baraja mazo = new Baraja();
 
     public Partida(int cantidadJugadores) {
         setMesa();
