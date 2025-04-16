@@ -7,10 +7,9 @@ public class Jugador {
     private ArrayList<Ficha> Baraja;
     private Baraja mazo;
     
-    public Jugador(String nombre, Baraja mazo){
+    public Jugador(String nombre){
         setNombre(nombre);
         this.Baraja = new ArrayList<Ficha>();
-        setMazo(mazo);
     }
     
     /* Getters */
