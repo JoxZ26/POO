@@ -1,10 +1,10 @@
 package com.mycompany.rummikub;
 import java.util.ArrayList;
 
-public class Combinacion {
+public class Combinaciones {
     private ArrayList<Ficha> Combinacion;
     
-    public Combinacion(){
+    public Combinaciones(){
         this.Combinacion = new ArrayList<Ficha>();   
     }
     public boolean esSerie() {
@@ -12,7 +12,7 @@ public class Combinacion {
         return false;
     }
     int numBase = -1;
-    ArrayList<String> coloresUsados = new ArrayList<>();
+    ArrayList<Integer> coloresUsados = new ArrayList<>();
     for (Ficha i : Combinacion) {
         if (i.isComodin()) {
             continue; 
@@ -33,4 +33,3 @@ public class Combinacion {
 
 
     
-}
