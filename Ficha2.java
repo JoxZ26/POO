@@ -1,0 +1,44 @@
+package com.mycompany.rummikubkendall;
+public class Ficha {
+    private int id;
+    private int color;
+    private int numero;
+
+    public Ficha(int id, int color, int numero) {
+        this.id = id;
+        this.color = color;
+        this.numero = numero;
+    }
+
+    
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getColor() {
+        return color;
+    }
+
+    public void setColor(int color) {
+        this.color = color;
+    }
+
+    public int getNumero() {
+        return numero;
+    }
+
+    public void setNumero(int numero) {
+        this.numero = numero;
+    }
+    
+    
+    public String toString() {
+        return "#" + id + "|C" + color + "N" + numero ;
+    }
+
+    
+}
