@@ -1,12 +1,16 @@
+
 package com.mycompany.rummikub;
+import java.util.Collections;
+
 import java.util.ArrayList;
 
-public class Combinaciones {
+public class Combinacion {
     private ArrayList<Ficha> Combinacion;
     
-    public Combinaciones(){
+    public Combinacion(){
         this.Combinacion = new ArrayList<Ficha>();   
     }
+    
     public boolean esSerie() {
     if (Combinacion.size() < 3 || Combinacion.size() > 4) {
         return false;
@@ -30,6 +34,42 @@ public class Combinaciones {
     }
     return true;
 }
+    
+    public boolean esEscalera() {
+    if (Combinacion.size() < 3) {
+        return false; // Mínimo 3 fichas
+    }
 
+    // Verificar mismo color y obtener números (ignorando comodines)
+    int colorinicial = -1;
+    ArrayList<Integer> numeros = new ArrayList<>();
+    int comodines = 0;
 
+    for (Ficha ficha : Combinacion) {
+        if (ficha.isComodin()) {
+            comodines++;
+        } else {
+            if (colorinicial == -1) {
+                colorinicial = ficha.getColor();
+            } else if (ficha.getColor() != colorinicial) {
+                return false; // Distinto color → no es escalera
+            }
+            numeros.add(ficha.getNumero());
+        }
+    }
+    // Ordenar los números
+    Collections.sort(numeros);
+    // Verificar si los números (con ayuda de comodines) son consecutivos
+    int huecos = 0;
+    for (int i = 1; i < numeros.size(); i++) {
+        int diferencia = numeros.get(i) - numeros.get(i - 1);
+        if (diferencia == 0) {
+            return false; // Números repetidos (no permitido)
+        }
+        huecos += (diferencia - 1); // Cuántos números faltan entre ellos
+    }
+    // Comodines deben poder cubrir los huecos
+    return (huecos <= comodines);
+}
+}
     
