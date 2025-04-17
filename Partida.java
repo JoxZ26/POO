@@ -1,5 +1,5 @@
 
-package com.mycompany.rummikubp;
+package com.mycompany.rummikub;
 import java.util.ArrayList;
 
 public class Partida {
