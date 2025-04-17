@@ -1,15 +1,23 @@
 
 package com.mycompany.rummikub;
+import java.util.ArrayList;
 import java.util.Collections;
 
-import java.util.ArrayList;
-
-public class Combinacion {
+public class Combinaciones {
     private ArrayList<Ficha> Combinacion;
     
-    public Combinacion(){
+    public Combinaciones(){
         this.Combinacion = new ArrayList<Ficha>();   
     }
+
+    public ArrayList<Ficha> getCombinacion() {
+        return Combinacion;
+    }
+
+    public void setCombinacion(ArrayList<Ficha> Combinacion) {
+        this.Combinacion = Combinacion;
+    }
+    
     
     public boolean esSerie() {
     if (Combinacion.size() < 3 || Combinacion.size() > 4) {
@@ -34,7 +42,6 @@ public class Combinacion {
     }
     return true;
 }
-    
     public boolean esEscalera() {
     if (Combinacion.size() < 3) {
         return false; // Mínimo 3 fichas
@@ -72,4 +79,5 @@ public class Combinacion {
     return (huecos <= comodines);
 }
 }
-    
+
+
