@@ -1,5 +1,9 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.mycompany.rummikubp;
 
-package com.mycompany.rummikub;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -78,6 +82,13 @@ public class Combinaciones {
     // Comodines deben poder cubrir los huecos
     return (huecos <= comodines);
 }
+    public boolean esValida(){
+        if (esSerie() || esEscalera()){
+            return true;
+        }
+        return false;
+    }
 }
+
 
 
