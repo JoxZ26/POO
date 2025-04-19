@@ -7,9 +7,12 @@ public class Jugador {
     private ArrayList<Ficha> Baraja;
     private Baraja mazo;
     
-    public Jugador(String nombre){
+    public Jugador(String nombre, Baraja mazo){
+        this.mazo = mazo;
         setNombre(nombre);
         this.Baraja = new ArrayList<Ficha>();
+        iniciarBaraja();
+ 
     }
     
     /* Getters */
@@ -17,11 +20,16 @@ public class Jugador {
         return nombre;
     }
 
-    public void getBaraja() {
-        for (Ficha temp : Baraja){
-            System.out.println(temp);
-        }
+    public void mostrarBaraja() {
+    for (Ficha ficha : Baraja) {
+        System.out.println(ficha.getNumero() + " de " + ficha.getColor());
     }
+}
+
+    public ArrayList<Ficha> getBaraja() {
+    return Baraja;
+}
+
     
     /* Setters */
     public void setNombre(String nombre) {
