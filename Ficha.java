@@ -1,4 +1,6 @@
-package com.mycompany.rummikubkendall;
+
+package com.mycompany.rummikub+;
+
 public class Ficha {
     private int id;
     private int color;
