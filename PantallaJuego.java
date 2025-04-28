@@ -189,7 +189,16 @@ public class PantallaJuego extends javax.swing.JFrame {
             panelFichasJugador.revalidate();
             panelFichasJugador.repaint();
             
-                    
+            mesaPanel.revalidate();
+            mesaPanel.repaint();
+            fichaSeleccionada.addMouseListener(new MouseAdapter(){
+                public void mouseClicked(MouseEvent e){
+                    Combinacion.remove(fichaSeleccionada.getFicha());
+                    mesaPanel.revalidate();
+                    mesaPanel.repaint();
+                }
+            });
+                 
             celda.setLayout(new BorderLayout());
             celda.add(fichaSeleccionada, BorderLayout.CENTER);
             Combinacion.add(fichaSeleccionada.getFicha());
@@ -204,6 +213,7 @@ public class PantallaJuego extends javax.swing.JFrame {
             fichaSeleccionada = null;
         }
     }
+    
 }); 
                 mesaPanel.add(celda);
             }
