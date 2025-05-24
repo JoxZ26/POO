@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.mycompany.rummikubkendall;
+
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
@@ -12,14 +13,18 @@ import javax.swing.JOptionPane;
  * @author kenda
  */
 public class JugadoresNombres extends javax.swing.JFrame {
-    private ArrayList<String> listaNombres = new ArrayList<>();
-    private DefaultListModel<String> modeloLista = new DefaultListModel<>();
+
+    private ArrayList<String> listaNombres = new ArrayList<>(); //Se guardaran los jugadores (nombres) en esta lista
+    private DefaultListModel<String> modeloLista = new DefaultListModel<>(); // para mostrarse visualmente en la lista
+
     /**
      * Creates new form JugadoresNombres
      */
     public JugadoresNombres() {
         initComponents();
-        jList1.setModel(modeloLista);
+        setLocationRelativeTo(null);
+        setLocationRelativeTo(null);
+        jList1.setModel(modeloLista); //Se inicializa el Jlist
     }
 
     /**
@@ -139,40 +144,41 @@ public class JugadoresNombres extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String nombre = jTextField1.getText().trim();
-        if (!nombre.isEmpty() && listaNombres.size() < 4) {
-            listaNombres.add(nombre);
-            modeloLista.addElement(nombre);
+        //Boton de guardar:
+        String nombre = jTextField1.getText().trim(); //el nombre que recibe se guarda en nombre
+        if (!nombre.isEmpty() && listaNombres.size() < 4) { //si ya escribio algo y todavia no se a llegado al maximo de jugadores:
+            listaNombres.add(nombre); //Guarda el nombre a la lista dinamica
+            modeloLista.addElement(nombre); //se vea visualmente
             jTextField1.setText(""); // Limpia el text field
-        } 
-        else {
-            if(nombre.isEmpty()){
-                javax.swing.JOptionPane.showMessageDialog(this, 
-                "Ingrese un nombre válido.");
+        } else {
+            if (nombre.isEmpty()) { //Si no a escrito nada:
+                javax.swing.JOptionPane.showMessageDialog(this,
+                        "Ingrese un nombre válido.");
+            } else if (listaNombres.size() >= 4) { //Ya no caben mas jugadores:
+                javax.swing.JOptionPane.showMessageDialog(this,
+                        "Máximo 4 jugadores.");
             }
-            else if(listaNombres.size() >= 4)
-            javax.swing.JOptionPane.showMessageDialog(this, 
-                "Máximo 4 jugadores.");
-        } 
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-     if (listaNombres.size() < 2 || listaNombres.size() > 4) {
-        JOptionPane.showMessageDialog(this, "Debe haber entre 2 y 4 jugadores.");
-        return;
+        //Boton de listo
+        if (listaNombres.size() < 2 || listaNombres.size() > 4) { //pasara al juego si ya esta el minimo de jugadores, si no:
+            JOptionPane.showMessageDialog(this, "Debe haber entre 2 y 4 jugadores.");
+            return; //Return para que no continue
         }
-     String[] nombres = listaNombres.toArray(new String[0]);
-     Partida partida = new Partida(nombres.length, nombres);
-   
-    PantallaJuego pantalla = new PantallaJuego(partida);
-    pantalla.setVisible(true);
-    this.dispose();
+        String[] nombres = listaNombres.toArray(new String[0]); //La lista dinamica que era de nombres, como ya sabemos la cantidad la convertimos en un arreglo
+        Partida partida = new Partida(nombres.length, nombres); //se crea la partida
+
+        PantallaJuego pantalla = new PantallaJuego(partida);
+        pantalla.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
      */
-       public static void main(String args[]) {
+    public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.

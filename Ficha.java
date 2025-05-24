@@ -1,24 +1,28 @@
 package com.mycompany.rummikubkendall;
-public class Ficha {
-    private int id;
-    private int color;
-    private int numero;
-    private int valorTemporal;
 
-    public Ficha(int id, int color, int numero) {
+public class Ficha { //Clase Ficha. Representa las fichas con las que se juega la partida.
+    private int id; // Atributo privado, tipo int, id: Un identificador para asociar cada ficha.
+    private int color; //Atributo privado, tipo int, color: Color de cada ficha, representado como entero.
+    private int numero; // Atributo privado, tipo int, número: Valor numérico de cada ficha.
+    private int valorTemporal; //Atributo privado, tipo int, valorTemporal: Caso especial en caso de ser una ficha de tipo comodín.
+
+    public Ficha(int id, int color, int numero) { //Constructor de fichas.
         this.id = id;
         this.color = color;
         this.numero = numero;
         this.valorTemporal = -1;
     }
+    
+    public Ficha(Ficha copia) { //Constructor para copiar una ficha.
+        this.id = copia.id;
+        this.color = copia.color;
+        this.numero = copia.numero;
+        this.valorTemporal = copia.valorTemporal;
+    }
 
     /* Getters */
     public int getValorTemporal() {
         return valorTemporal;
-    }
-
-    public void setValorTemporal(int valor) {
-        this.valorTemporal = valor;
     }
     
     public int getId() {
@@ -33,8 +37,8 @@ public class Ficha {
         return numero;
     }
     
-    public boolean isComodin() {
-        return numero == 14;
+    public boolean isComodin() { //Método para verificar si una ficha es un comodín.
+        return numero == 14; //Comodín tiene un valor numérico especial de 14.
     }
     
     
@@ -51,8 +55,14 @@ public class Ficha {
         this.numero = numero;
     }
     
-    public int getNumeroParaJuego() {
-        return isComodin() && valorTemporal != -1 ? valorTemporal : numero;
+    public void setValorTemporal(int valor) {
+        this.valorTemporal = valor;
+    }
+    
+    /* Metodos */
+    public int getNumeroParaJuego() {//Método que retorna el valor númerico que debe usarse en el juego para una ficha.
+        //Si es un comodín y su valor temporal es distinto de -1. se devuelve el valor temporal. Sino, se devuelve el número original de la ficha.
+        return isComodin() && valorTemporal != -1 ? valorTemporal : numero; 
     }
     
     /* toString */

@@ -13,9 +13,11 @@ public class Inicio extends javax.swing.JFrame {
     
     
     public Inicio() {
+        
         initComponents();
+        setLocationRelativeTo(null); //ubica el cuadro en el medio de la pntalla
         rummikub.setFocusable(false); // Para que no se le pueda dar foco
-        rummikub.setOpaque(false); // Para que sea transparente si querés
+        rummikub.setOpaque(false); // Para que sea transparente 
         rummikub.setBorder(null); // Para quitarle el borde, si se ve feo
     }
 
@@ -101,7 +103,7 @@ public class Inicio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void SalirBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirBotonActionPerformed
-        System.exit(0);
+    System.exit(0); //Cierra el programa
     }//GEN-LAST:event_SalirBotonActionPerformed
 
     private void IniciarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IniciarBotonActionPerformed

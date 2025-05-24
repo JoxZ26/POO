@@ -5,6 +5,7 @@
 package com.mycompany.rummikubkendall;
 
 import javax.swing.JOptionPane;
+
 /**
  *
  * @author kenda
@@ -13,27 +14,27 @@ public class VistaFicha extends javax.swing.JPanel {
 
     private Ficha ficha;
     private PantallaJuego pantallaJuego;
-    
-    public VistaFicha(Ficha ficha, PantallaJuego pantallaJuego) {
-    this.ficha = ficha;
-    this.pantallaJuego = pantallaJuego;
-    initComponents(); // NO TOQUES ESTO
-    postInitSetup();
 
-}
-    
-    public VistaFicha(Ficha ficha) {
-    this(ficha, null); // Llama al otro constructor con null
+    public VistaFicha(Ficha ficha, PantallaJuego pantallaJuego) {
+        this.ficha = ficha;
+        this.pantallaJuego = pantallaJuego;
+        initComponents(); 
+        postInitSetup();
+
     }
-    
-        // Configuración posterior al initComponents
+
+    public VistaFicha(Ficha ficha) {
+        this(ficha, null); // Llama al otro constructor con null
+    }
+
+    // Configuración posterior al initComponents
     private void postInitSetup() {
-        // 1. Configurar visualización del comodín
-        if(ficha.isComodin()) {
+        //configurar visualización del comodín
+        if (ficha.isComodin()) {
             jLabel2.setText(""); // Texto vacío para comodines
         }
-        
-        // 2. Agregar MouseListener personalizado
+
+        // agregar MouseListener personalizado
         this.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 if (ficha.isComodin()) {
@@ -45,16 +46,16 @@ public class VistaFicha extends javax.swing.JPanel {
             }
         });
     }
-    
+
     // Manejo del clic en comodín
     private void handleComodinClick() {
         String input = JOptionPane.showInputDialog(
-            this, 
-            "Asigne valor al comodín (1-13):", 
-            "Valor del Comodín", 
-            JOptionPane.PLAIN_MESSAGE
+                this,
+                "Asigne valor al comodín (1-13):",
+                "Valor del Comodín",
+                JOptionPane.PLAIN_MESSAGE
         );
-        
+
         try {
             if (input != null && !input.isEmpty()) {
                 int value = Integer.parseInt(input);
@@ -68,13 +69,13 @@ public class VistaFicha extends javax.swing.JPanel {
             showError("Ingrese un número válido");
         }
     }
-    
+
     private void showError(String message) {
         JOptionPane.showMessageDialog(
-            this, 
-            message, 
-            "Error", 
-            JOptionPane.ERROR_MESSAGE
+                this,
+                message,
+                "Error",
+                JOptionPane.ERROR_MESSAGE
         );
     }
 
@@ -85,8 +86,6 @@ public class VistaFicha extends javax.swing.JPanel {
     public void setFicha(Ficha ficha) {
         this.ficha = ficha;
     }
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.

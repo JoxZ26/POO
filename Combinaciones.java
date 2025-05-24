@@ -1,86 +1,96 @@
 package com.mycompany.rummikubkendall;
 import java.util.ArrayList;
-import java.util.Collections;
 
-public class Combinaciones {
-    private ArrayList<Ficha> Combinacion;
-    
-    public Combinaciones(){
-        this.Combinacion = new ArrayList<Ficha>();   
-    }
+public class Combinaciones { // Clase Combinaciones: representa un grupo de fichas que pueden formar una serie o una escalera
+    private ArrayList<Ficha> combinacion; // Atributo privado, tipo ArrayList<Ficha>, combinacion: almacena las fichas que forman la combinación
 
-    public ArrayList<Ficha> getCombinacion() {
-        return Combinacion;
+    public Combinaciones() { // Constructor por defecto: inicializa la combinación como una lista vacía
+        this.combinacion = new ArrayList<Ficha>();
     }
 
-    public void setCombinacion(ArrayList<Ficha> Combinacion) {
-        this.Combinacion = Combinacion;
+    /* Getters */
+    public ArrayList<Ficha> getCombinacion() { // Retorna la lista de fichas actuales en la combinación
+        return combinacion;
     }
-    
-    
-    public boolean esSerie() {
-    if (Combinacion.size() < 3 || Combinacion.size() > 4) {
-        return false;
+
+    /* Setters */
+    public void setCombinacion(ArrayList<Ficha> Combinacion) { // Asigna una nueva lista de fichas a la combinación
+        this.combinacion = Combinacion;
     }
-    int numBase = -1;
-    ArrayList<Integer> coloresUsados = new ArrayList<>();
-    for (Ficha i : Combinacion) {
-        if (i.isComodin()) {
-            continue; 
+
+    /* Métodos */
+    public boolean esSerie() { // Método que verifica si la combinación actual forma una serie válida
+        if (combinacion.size() < 3 || combinacion.size() > 4) { // Una serie válida debe tener entre 3 y 4 fichas
+            return false;
         }
-        if (numBase == -1) {
-            numBase = i.getNumeroParaJuego();
-        } else if (i.getNumeroParaJuego()!= numBase) {
-            return false; 
-        }
-        if (coloresUsados.contains(i.getColor())) {
-            return false; 
-        } else {
-            coloresUsados.add(i.getColor());
-        }
-    }
-    return true;
-}
-    public boolean esEscalera() {
-    if (Combinacion.size() < 3) {
-        return false; // Mínimo 3 fichas
-    }
 
-    // Verificar mismo color y obtener números (ignorando comodines)
-    int colorinicial = -1;
-    ArrayList<Integer> numeros = new ArrayList<>();
-    int comodines = 0;
+        int numBase = -1; // Variable para almacenar el número base que todas las fichas deben compartir
+        ArrayList<Integer> coloresUsados = new ArrayList<>(); // Lista para evitar colores repetidos
 
-    for (Ficha ficha : Combinacion) {
-        if (ficha.isComodin()) {
-            comodines++;
-        } else {
-            if (colorinicial == -1) {
-                colorinicial = ficha.getColor();
-            } else if (ficha.getColor() != colorinicial) {
-                return false; // Distinto color → no es escalera
+        for (Ficha i : combinacion) {
+            if (i.isComodin()) {
+                continue; // Los comodines se permiten y se omiten en esta verificación
             }
-            numeros.add(ficha.getNumeroParaJuego());
+
+            if (numBase == -1) {
+                numBase = i.getNumeroParaJuego(); // Se toma el número de la primera ficha no comodín como referencia
+            } else if (i.getNumeroParaJuego() != numBase) {
+                return false; // Si alguna ficha tiene un número distinto, no es serie
+            }
+
+            if (coloresUsados.contains(i.getColor())) {
+                return false; // No se permiten colores repetidos en una serie
+            } else {
+                coloresUsados.add(i.getColor()); // Se registra el color usado
+            }
         }
+
+        return true; // Si pasa todas las verificaciones, es una serie válida
     }
-    // Ordenar los números
-    Collections.sort(numeros);
-    // Verificar si los números (con ayuda de comodines) son consecutivos
-    int huecos = 0;
-    for (int i = 1; i < numeros.size(); i++) {
-        int diferencia = numeros.get(i) - numeros.get(i - 1);
-        if (diferencia == 0) {
-            return false; // Números repetidos (no permitido)
+
+    public boolean esEscalera() { // Método que verifica si la combinación actual forma una escalera válida
+        if (combinacion.size() < 3) {
+            return false; // Una escalera válida debe tener al menos 3 fichas
         }
-        huecos += (diferencia - 1); // Cuántos números faltan entre ellos
+
+        int colorInicial = -1; // Variable para asegurar que todas las fichas (excepto comodines) sean del mismo color
+        ArrayList<Integer> numeros = new ArrayList<>(); // Lista para guardar los números de las fichas (sin comodines)
+        int comodines = 0; // Contador de comodines encontrados
+
+        for (Ficha ficha : combinacion) {
+            if (ficha.isComodin()) {
+                comodines++; // Se cuentan los comodines para evaluar si pueden completar la secuencia
+            } else {
+                if (colorInicial == -1) {
+                    colorInicial = ficha.getColor(); // Se toma el color de la primera ficha no comodín
+                } else if (ficha.getColor() != colorInicial) {
+                    return false; // Si alguna ficha es de color distinto, no es escalera
+                }
+
+                numeros.add(ficha.getNumeroParaJuego()); // Se guarda el número de la ficha
+            }
+        }
+
+        // Verificar si los números están en orden estrictamente ascendente
+        for (int i = 1; i < numeros.size(); i++) {
+            if (numeros.get(i) <= numeros.get(i - 1)) {
+                return false; // No debe haber repeticiones ni descensos
+            }
+        }
+
+        // Calcular cuántos huecos hay entre los números (para saber si los comodines los pueden llenar)
+        int huecos = 0;
+        for (int i = 1; i < numeros.size(); i++) {
+            huecos += (numeros.get(i) - numeros.get(i - 1) - 1); // Huecos = diferencia - 1
+        }
+
+        return (huecos <= comodines); // La escalera es válida si los comodines pueden llenar los huecos
     }
-    // Comodines deben poder cubrir los huecos
-    return (huecos <= comodines);
-}
-    public boolean esValida(){
-        if (esSerie() || esEscalera()){
-            return true;
+
+    public boolean esValida() { // Método que determina si la combinación es válida (ya sea serie o escalera)
+        if (esSerie() || esEscalera()) {
+            return true; // Si cumple alguna de las dos condiciones, es válida
         }
-        return false;
+        return false; // Si no cumple ninguna, no es válida
     }
 }
